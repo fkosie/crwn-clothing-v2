@@ -1,6 +1,13 @@
+@font-face {
+  font-family: 'PrimaryFont';
+  src: url('https://fonts.gstatic.com/s/playwritecoguides/v2/AYCXpWvtftIVXepC5AzjAx1KgYPugOK0Tqk.woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: 'Comic Neue', sans-serif;
+  font-family: 'PrimaryFont', 'Comic Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

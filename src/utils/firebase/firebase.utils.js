@@ -7,9 +7,11 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 import { getRedirectResult as firebaseGetRedirectResult } from 'firebase/auth';
+import { getAdditionalUserInfo as firebaseGetAdditionalUserInfo } from 'firebase/auth';
 
 import {
   getFirestore,
@@ -89,11 +91,34 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   }
 }
 
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  try {
+    //if(!email || !password) {
+    //  throw new Error('Email and password are required');
+    //}
+    return await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.log('Error signing in user', error.message);
+    throw error;
+  }
+}
+
+export const signOutUser = async () => {
+  try {
+    return await auth.signOut();
+  } catch (error) {
+    console.log('Error signing out user', error.message);
+    throw error;
+  }
+}
+
 export const getRedirectResult = async () => {
   try {
     console.log('Getting redirect result...');
     const result = await firebaseGetRedirectResult(auth);
     console.log('Redirect result:', result);
+    const details = firebaseGetAdditionalUserInfo(result)
+    console.log(details) // details.isNewUser to determine if a new or returning user
     return result;
   } catch (error) {
     console.error('Error getting redirect result:', error);
