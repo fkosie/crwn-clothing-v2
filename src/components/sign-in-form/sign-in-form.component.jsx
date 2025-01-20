@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import { 
   signInWithGooglePopup, 
@@ -15,7 +15,6 @@ import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
 import './sign-in-form.styles.scss';
-import { signOut } from 'firebase/auth';
 
 const defaultFormFields = {
   email: '',
@@ -26,6 +25,9 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  // TODO: remove when figure out redirect.
+
+  /*
   useEffect(() => {
     // const unsubscribe = onAuthStateChangedListener(async (user) => {
     //   if (user) {
@@ -59,24 +61,21 @@ const SignInForm = () => {
       } finally {
         //setLoading(false);
       }
-     /*
-        try {
-          const result = await getRedirectResult()
-        } catch (error) {
-          console.log(error) // Debug errors from redirect response
-        }
-      */
+      // try {
+      //   const result = await getRedirectResult()
+      // } catch (error) {
+      //   console.log(error) // Debug errors from redirect response
+      // }
     };
 
     checkAuth();
   }, []);
+  */
   
   const logGooglePopupUser = async () => {
     try {
       const response = await signInWithGooglePopup();
-      console.log(response);
       resetFormFields();
-      createUserDocumentFromAuth(response.user);
     } catch (error) {
       console.error('Error during popup signin:', error);
     }

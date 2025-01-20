@@ -49,18 +49,15 @@ export const createUserDocumentFromAuth = async (
   userAuth, 
   additionalInformation = {}
 ) => {
+  console.log("[FIREBASE UTILS] createUserDocumentFromAuth()");
   if(!userAuth) return;
   const userDocRef = doc(db, 'users', userAuth.uid);
 
-  console.log(userDocRef);
-
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
-  console.log(userSnapshot.exists());
 
   // if user data does not exist in the database, create it
-
   if (!userSnapshot.exists()) {
+    console.log("User doesn't exist yet, creating user document")
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -81,6 +78,7 @@ export const createUserDocumentFromAuth = async (
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   try {
+    console.log("[FIREBASE UTILS] createAuthUserWithEmailAndPassword()");
     if(!email || !password) {
       throw new Error('Email and password are required');
     }
@@ -93,6 +91,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   try {
+    console.log("[FIREBASE UTILS] signInAuthUserWithEmailAndPassword()");
     //if(!email || !password) {
     //  throw new Error('Email and password are required');
     //}
@@ -105,6 +104,7 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signOutUser = async () => {
   try {
+    console.log("[FIREBASE UTILS] signOutUser()");
     return await auth.signOut();
   } catch (error) {
     console.log('Error signing out user', error.message);

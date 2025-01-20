@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Form } from 'react-router-dom';
 
 import { 
   createUserDocumentFromAuth,
-  createAuthUserWithEmailAndPassword, } from "../../utils/firebase/firebase.utils";
+  createAuthUserWithEmailAndPassword, 
+} from "../../utils/firebase/firebase.utils";
 
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
@@ -20,9 +21,7 @@ const defaultFormFields = {
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-
-  console.log(formFields);
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
