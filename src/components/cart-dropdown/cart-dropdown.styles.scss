@@ -17,19 +17,13 @@
   }
 
   .cart-items {
-    flex-grow: 1; /* Allow cart-items to grow and take available space */
+    height: 240px;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; /* Allow vertical scrolling if needed */
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For Internet Explorer and Edge */
-  }
-
-  .cart-items::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
+    overflow: scroll;
   }
 
   button {
-    margin-top: auto; /* Push the button to the bottom */
+    margin-top: auto;
   }
 }
